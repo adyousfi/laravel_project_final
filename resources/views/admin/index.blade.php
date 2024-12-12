@@ -7,7 +7,7 @@
 </head>
 <body>
 
-<h1>ADMIN</h1>
+<h1>ADMIn</h1>
 
 <form method="POST" action="{{ route('logout') }}">
                     @csrf
