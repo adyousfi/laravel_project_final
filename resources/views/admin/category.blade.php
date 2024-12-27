@@ -8,40 +8,44 @@
     </header>
     @include('admin.sidebar')
 
-    <!-- Sidebar Navigation end-->
+<!-- Sidebar Navigation end-->
     <div class="page-content">
         <div class="page-header">
             <div class="container-fluid">
                 <h2>Gebruikersbeheer</h2>
 
-                <!-- Succes of foutmelding weergeven -->
-                @if(session('status'))
-                    <div class="alert alert-success">
-                        {{ session('status') }}
-                    </div>
-                @elseif(session('error'))
-                    <div class="alert alert-danger">
-                        {{ session('error') }}
-                    </div>
-                @endif
+               <!-- Toon validatiefouten -->
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
 
-                <!-- Formulier voor het aanmaken van een nieuwe gebruiker -->
+<!-- Formulier voor het aanmaken van een nieuwe gebruiker -->
                 <div class="mb-3">
-                <form action="{{ route('admin.create_user') }}" method="POST">
+                <form action="{{ route('admin.createUser') }}" method="POST" class="mb-3">
                         @csrf
-                        <div class="form-group">
+                        <div class="mb-3">
                             <label for="name">Naam</label>
                             <input type="text" id="name" name="name" class="form-control" required>
                         </div>
-                        <div class="form-group">
+                        <div class="mb-3">
                             <label for="email">Email</label>
                             <input type="email" id="email" name="email" class="form-control" required>
                         </div>
-                        <div class="form-group">
+                        <div class="mb-3">
                             <label for="password">Wachtwoord</label>
                             <input type="password" id="password" name="password" class="form-control" required>
                         </div>
-                        <div class="form-group">
+                        <div class="mb-3">
+                            <label for="password_confirmation">Bevestig Wachtwoord</label>
+                            <input type="password" id="password_confirmation" name="password_confirmation" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
                             <label for="usertype">Rol</label>
                             <select id="usertype" name="usertype" class="form-control" required>
                                 <option value="user">Gebruiker</option>
@@ -50,7 +54,7 @@
                         </div>
                         <button type="submit" class="btn btn-primary">Maak Gebruiker</button>
                     </form>
-                </div>
+                
 
                 <table class="table table-striped">
                     <thead>

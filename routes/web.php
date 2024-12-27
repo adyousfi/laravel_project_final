@@ -24,16 +24,13 @@ Route::middleware('auth')->group(function () {
 Route::middleware(['auth', 'admin'])->group(function () {
     
     Route::get('admin/dashboard', [HomeController::class, 'index']);
-    
-  
-    Route::get('/view_category', [AdminController::class, 'view_category']);
-    
-    
+    Route::get('/view_category', [AdminController::class, 'view_category'])->name('admin.view_category');
+
 
     // Toggle admin rechten van een gebruiker
     Route::post('/admin/toggle/{user}', [AdminController::class, 'toggleAdmin']);
+    Route::post('/admin/create_user', [AdminController::class, 'createUser'])->name('admin.createUser');
 
-    Route::post('/admin/create_user', [AdminController::class, 'createUser'])->name('admin.create_user');
 });
 
 

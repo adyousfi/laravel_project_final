@@ -33,31 +33,25 @@ class AdminController extends Controller
 
 
     public function createUser(Request $request)
-{
-    // Controleer of de ingelogde gebruiker een admin is
-    if(auth()->user()->usertype !== 'admin') {
-        return redirect()->back()->with('error', 'Je hebt geen toestemming om deze actie uit te voeren.');
+    {
+        // Valideer de gegevens en sla het resultaat op in $validated
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|string|min:8|confirmed',
+            'usertype' => 'required|in:user,admin',
+        ]);
+    
+        // Maak een nieuwe gebruiker aan
+        $user = new User();
+        $user->name = $validated['name'];
+        $user->email = $validated['email'];
+        $user->password = bcrypt($validated['password']);
+        $user->usertype = $validated['usertype'];
+        $user->save();
+    
+        // Redirect naar een succespagina
+        return redirect()->route('admin.view_category')->with('success', 'Gebruiker succesvol aangemaakt!');
     }
-
-    // Valideer de input
-    $validatedData = $request->validate([
-        'name' => 'required|string|max:255',
-        'email' => 'required|email|unique:users,email',
-        'password' => 'required|string|min:8|confirmed', 
-        'usertype' => 'required|in:user,admin', 
-    ]);
-
-    // Maak de nieuwe gebruiker aan
-    User::create([
-        'name' => $validatedData['name'],
-        'email' => $validatedData['email'],
-        'password' => bcrypt($validatedData['password']),
-        'usertype' => $validatedData['usertype'], 
-    ]);
-
-   
-    return redirect()->route('admin.view_category')->with('success', 'Gebruiker succesvol aangemaakt!');
-}
-
   
 }
