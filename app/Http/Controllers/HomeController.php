@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\FaqCategory;
 
 class HomeController extends Controller
 {
@@ -11,9 +12,13 @@ class HomeController extends Controller
         return view('admin.index');
     }
     
-    public function home(){
+    public function home()
+    {
+        // Haal de FAQ-categorieën en vragen op
+        $faqCategories = FaqCategory::with('faqs')->get();
+        
 
-        return view('home.index');
+        // Stuur de data naar de view
+        return view('home.index', compact('faqCategories'));
     }
 }
-
