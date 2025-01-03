@@ -12,7 +12,7 @@
         <!-- Sidebar Navidation Menus--><span class="heading">Main</span>
         <ul class="list-unstyled">
         <li class="{{ Request::is('admin/dashboard') ? 'active' : '' }}">
-                <a href="{{ url('admin/dashboard') }}"> <i class="icon-home"></i>Home </a></li>
+                <a href="{{ url('admin/dashboard') }}"> <i class="icon-home"></i>Contact-us page panel </a></li>
 
                 <li class="{{ Request::is('view_category') ? 'active' : '' }}">
                 <a href="{{url('view_category') }}"> <i class="icon-grid"></i>Manage users </a></li>

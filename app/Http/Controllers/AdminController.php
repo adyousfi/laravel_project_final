@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
-
+use App\Models\ContactMessage;
 
 class AdminController extends Controller
 {
@@ -14,8 +14,6 @@ class AdminController extends Controller
         return view('admin.category', compact('users'));
     }
 
-  
-
     public function toggleAdmin($id)
     {
         $user = User::findOrFail($id);
@@ -24,13 +22,11 @@ class AdminController extends Controller
             return redirect()->back()->with('error', 'Je kunt je eigen adminrechten niet wijzigen!');
         }
 
-       
         $user->usertype = $user->usertype == 'admin' ? 'user' : 'admin';
         $user->save();
 
         return redirect()->back()->with('status', 'Gebruikerstype succesvol gewijzigd!');
     }
-
 
     public function createUser(Request $request)
     {
@@ -41,7 +37,7 @@ class AdminController extends Controller
             'password' => 'required|string|min:8|confirmed',
             'usertype' => 'required|in:user,admin',
         ]);
-    
+
         // Maak een nieuwe gebruiker aan
         $user = new User();
         $user->name = $validated['name'];
@@ -49,9 +45,32 @@ class AdminController extends Controller
         $user->password = bcrypt($validated['password']);
         $user->usertype = $validated['usertype'];
         $user->save();
-    
+
         // Redirect naar een succespagina
         return redirect()->route('admin.view_category')->with('success', 'Gebruiker succesvol aangemaakt!');
     }
-  
+
+    public function index()
+    {
+        // Voeg contactberichten toe
+        $messages = ContactMessage::orderBy('created_at', 'desc')->get();
+
+        // Retourneer de admin-dashboard view met berichten
+        return view('admin.index', compact('messages'));
+    }
+
+    public function replyContactMessage(Request $request, ContactMessage $contactMessage)
+    {
+        $request->validate([
+            'reply' => 'required|string',
+        ]);
+
+        // Markeer het bericht als beantwoord
+        $contactMessage->answered = true;
+        $contactMessage->save();
+
+        return redirect()
+            ->route('admin.dashboard')
+            ->with('success', 'The message has been replied and marked as answered.');
+    }
 }

@@ -6,9 +6,14 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\FaqCategoryController;
 use App\Http\Controllers\FaqController;
+use App\Http\Controllers\ContactController;
 
 // Route voor de homepagina
 Route::get('/', [HomeController::class, 'home'])->name('home');
+
+// Route voor de contactpagina
+Route::view('/contact', 'Home.contact')->name('contact');
+
 
 // Dashboard gebruikt nu dezelfde home-methode
 Route::get('/dashboard', [HomeController::class, 'home'])->middleware(['auth', 'verified'])->name('dashboard');
@@ -20,7 +25,8 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::middleware(['auth', 'admin'])->group(function () {
-    Route::get('admin/dashboard', [HomeController::class, 'index']);
+    // Admin dashboard route aangepast om contactberichten te tonen
+    Route::get('admin/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
 
     Route::get('/view_category', [AdminController::class, 'view_category'])->name('admin.view_category');
 
@@ -41,11 +47,15 @@ Route::middleware(['auth', 'admin'])->group(function () {
         'update' => 'admin.faqs.update',
         'destroy' => 'admin.faqs.destroy',
     ]);
+
+    // Route voor het beantwoorden van contactberichten 
+    Route::post('admin/contact-messages/{contactMessage}/reply', [AdminController::class, 'replyContactMessage'])->name('admin.contact_messages.reply');
 });
 
 // Publieke route voor het bekijken van de FAQ-pagina
 Route::get('/faqs', [FaqController::class, 'index'])->name('faqs.index');
 
-
+// Route voor contact us
+Route::post('/contact-submit', [ContactController::class, 'submit'])->name('contact.submit');
 
 require __DIR__.'/auth.php';
