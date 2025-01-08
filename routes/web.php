@@ -7,6 +7,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\FaqCategoryController;
 use App\Http\Controllers\FaqController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\MessageController;
 
 // Route voor de homepagina
 Route::get('/', [HomeController::class, 'home'])->name('home');
@@ -15,13 +16,13 @@ Route::get('/', [HomeController::class, 'home'])->name('home');
 Route::view('/contact', 'Home.contact')->name('contact');
 
 
-// Dashboard gebruikt nu dezelfde home-methode
 Route::get('/dashboard', [HomeController::class, 'home'])->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update'); // Deze is aangepast voor PATCH
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::post('/profile/update-profile-picture', [ProfileController::class, 'updateProfilePicture'])->name('profile.updateProfilePicture');
 });
 
 Route::middleware(['auth', 'admin'])->group(function () {
@@ -57,5 +58,16 @@ Route::get('/faqs', [FaqController::class, 'index'])->name('faqs.index');
 
 // Route voor contact us
 Route::post('/contact-submit', [ContactController::class, 'submit'])->name('contact.submit');
+
+// Publieke routes voor profielen
+Route::get('/profiles', [ProfileController::class, 'index'])->name('profiles.index');
+Route::get('/profiles/{user}', [ProfileController::class, 'show'])->name('profiles.show');
+Route::post('/profiles/{user}/comments', [ProfileController::class, 'storeComment'])->name('profiles.comments.store');
+
+// Routes voor berichten
+Route::middleware('auth')->group(function () {
+    Route::post('/profiles/{user}/messages', [MessageController::class, 'store'])->name('messages.store');
+    Route::get('/messages/inbox', [MessageController::class, 'inbox'])->name('messages.inbox');
+});
 
 require __DIR__.'/auth.php';

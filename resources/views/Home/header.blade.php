@@ -23,19 +23,27 @@
                   About us
                 </a>
               </li>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="why.html">
-                Why Us
-              </a>
-            </li>
-  
-            
-            </li>
             <li class="nav-item">
             <a class="nav-link" href="{{ route('contact') }}">Contact Us</a>
             </li>
+
+            <li class="nav-item">
+          <a class="nav-link" href="{{ route('profiles.index') }}">Profiles</a>
+          </li>
+
+              @if (Auth::check())
+            <li class="nav-item">
+            <a class="nav-link" href="{{ route('messages.inbox') }}">Inbox</a>
+            </li>
+              @endif
+
+              @if (Auth::check())
+            <li class="nav-item">
+            <a class="nav-link" href="{{ route('profile.edit') }}">Profiel bewerken</a>
+            </li>
+              @endif
           </ul>
+
           <div class="user_option">
         
 

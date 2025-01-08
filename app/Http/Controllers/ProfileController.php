@@ -1,4 +1,4 @@
-<?php
+<?php 
 
 namespace App\Http\Controllers;
 
@@ -8,38 +8,29 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
+use Illuminate\Support\Facades\Storage;
+use App\Models\User;
+use App\Models\Comment;
 
 class ProfileController extends Controller
 {
-    /**
-     * Display the user's profile form.
-     */
     public function edit(Request $request): View
     {
-        return view('profile.edit', [
+        return view('profiles.edit', [
             'user' => $request->user(),
         ]);
     }
 
-    /**
-     * Update the user's profile information.
-     */
-    public function update(ProfileUpdateRequest $request): RedirectResponse
+    public function update(ProfileUpdateRequest $request)
     {
-        $request->user()->fill($request->validated());
-
-        if ($request->user()->isDirty('email')) {
-            $request->user()->email_verified_at = null;
-        }
-
-        $request->user()->save();
-
-        return Redirect::route('profile.edit')->with('status', 'profile-updated');
+        $user = Auth::user();
+        
+        $user->fill($request->validated());
+        $user->save();
+    
+        
+        return redirect()->route('profile.edit')->with('success', 'Profiel bijgewerkt!');
     }
-
-    /**
-     * Delete the user's account.
-     */
     public function destroy(Request $request): RedirectResponse
     {
         $request->validateWithBag('userDeletion', [
@@ -56,5 +47,55 @@ class ProfileController extends Controller
         $request->session()->regenerateToken();
 
         return Redirect::to('/');
+    }
+
+    public function index(): View
+    {
+        $users = User::all(); 
+        return view('profiles.index', compact('users'));
+    }
+
+    public function show(User $user): View
+    {
+        return view('profiles.show', compact('user'));
+    }
+
+    public function storeComment(Request $request, User $user)
+    {
+        $request->validate([
+            'body' => 'required|string|max:500',
+        ]);
+
+        Comment::create([
+            'user_id' => auth()->id(),
+            'profile_id' => $user->id,
+            'body' => $request->body,
+        ]);
+
+        return back()->with('success', 'Comment geplaatst!');
+    }
+
+    public function updateProfilePicture(Request $request)
+    {
+        $request->validate([
+            'profile_picture' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
+    
+        $user = Auth::user();
+    
+        if ($request->hasFile('profile_picture')) {
+           
+            if ($user->profile_picture) {
+                Storage::delete('public/' . $user->profile_picture);
+            }
+    
+            // Upload de nieuwe profielfoto
+            $path = $request->file('profile_picture')->store('profile_pictures', 'public');
+            $user->profile_picture = $path;
+        }
+    
+        $user->save();
+    
+        return back()->with('success', 'Profielfoto bijgewerkt!');
     }
 }
