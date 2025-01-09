@@ -28,8 +28,13 @@
             </li>
 
             <li class="nav-item">
-          <a class="nav-link" href="{{ route('profiles.index') }}">Profiles</a>
-          </li>
+            <a class="nav-link" href="{{ route('news.index') }}">News items</a> 
+            </li>
+
+
+            <li class="nav-item">
+            <a class="nav-link" href="{{ route('profiles.index') }}">Profiles</a>
+            </li>
 
               @if (Auth::check())
             <li class="nav-item">

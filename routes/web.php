@@ -8,13 +8,13 @@ use App\Http\Controllers\FaqCategoryController;
 use App\Http\Controllers\FaqController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\MessageController;
+use App\Http\Controllers\NewsController;
 
 // Route voor de homepagina
 Route::get('/', [HomeController::class, 'home'])->name('home');
 
 // Route voor de contactpagina
 Route::view('/contact', 'Home.contact')->name('contact');
-
 
 Route::get('/dashboard', [HomeController::class, 'home'])->middleware(['auth', 'verified'])->name('dashboard');
 
@@ -43,10 +43,10 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::resource('admin/faqs', FaqController::class)->names([
         'index' => 'admin.faqs.index',
         'create' => 'admin.faqs.create',
-        'store' => 'admin.faqs.store',
-        'edit' => 'admin.faqs.edit',
+        'store'  => 'admin.faqs.store',
+        'edit'   => 'admin.faqs.edit',
         'update' => 'admin.faqs.update',
-        'destroy' => 'admin.faqs.destroy',
+        'destroy'=> 'admin.faqs.destroy',
     ]);
 
     // Route voor het beantwoorden van contactberichten 
@@ -71,3 +71,19 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+
+//Routes voor laatste nieuwtjes
+Route::get('/news', [NewsController::class, 'showPublicList'])->name('news.index');
+Route::get('/news/{id}', [NewsController::class, 'showPublicDetail'])->name('news.show');
+
+
+Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
+    Route::resource('news', NewsController::class)->except(['show'])->names([
+        'index'   => 'admin.news.index',
+        'create'  => 'admin.news.create',
+        'store'   => 'admin.news.store',
+        'edit'    => 'admin.news.edit',
+        'update'  => 'admin.news.update',
+        'destroy' => 'admin.news.destroy',
+    ]);
+});
