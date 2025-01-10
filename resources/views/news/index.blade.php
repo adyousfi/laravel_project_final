@@ -15,9 +15,6 @@
                         style="max-height: 200px; object-fit: cover;">
                     <div class="card-body d-flex flex-column">
                         <h5 class="card-title">{{ $item->title }}</h5>
-                        <p class="card-text">
-                            {{ \Illuminate\Support\Str::limit($item->description, 80, '...') }}
-                        </p>
                         <p class="text-muted mb-2">Published: {{ $item->publish_date }}</p>
 
                         <a href="{{ route('news.show', $item->id) }}" class="btn btn-primary mt-auto">

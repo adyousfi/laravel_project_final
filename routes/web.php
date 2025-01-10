@@ -20,7 +20,7 @@ Route::get('/dashboard', [HomeController::class, 'home'])->middleware(['auth', '
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update'); // Deze is aangepast voor PATCH
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::post('/profile/update-profile-picture', [ProfileController::class, 'updateProfilePicture'])->name('profile.updateProfilePicture');
 });
@@ -68,6 +68,7 @@ Route::post('/profiles/{user}/comments', [ProfileController::class, 'storeCommen
 Route::middleware('auth')->group(function () {
     Route::post('/profiles/{user}/messages', [MessageController::class, 'store'])->name('messages.store');
     Route::get('/messages/inbox', [MessageController::class, 'inbox'])->name('messages.inbox');
+    Route::post('/news/{id}/news-comments', [NewsController::class, 'storeComment'])->name('newsComments.store');
 });
 
 require __DIR__.'/auth.php';

@@ -15,4 +15,10 @@ class News extends Model
         'image',
         'publish_date',
     ];
+
+    public function newsComments()
+{
+    return $this->hasMany(NewsComment::class);
+}
+
 }

@@ -4,19 +4,16 @@ namespace App\Http\Controllers;
 
 use App\Models\News;
 use Illuminate\Http\Request;
+use App\Models\NewsComment;
 
 class NewsController extends Controller
 {
     /**
      * Display a listing of the resource.
-     * 
      */
     public function index()
     {
-       
         $newsItems = News::orderBy('publish_date', 'desc')->get();
-
-       
         return view('admin.news.index', compact('newsItems'));
     }
 
@@ -25,7 +22,6 @@ class NewsController extends Controller
      */
     public function create()
     {
-        
         return view('admin.news.create');
     }
 
@@ -34,7 +30,6 @@ class NewsController extends Controller
      */
     public function store(Request $request)
     {
-        
         $validated = $request->validate([
             'title'        => 'required|string|max:255',
             'description'  => 'required|string',
@@ -42,29 +37,24 @@ class NewsController extends Controller
             'publish_date' => 'required|date',
         ]);
 
-       
         $path = $request->file('image')->store('uploads/news', 'public');
 
-       
         $newsItem = new News();
         $newsItem->title         = $validated['title'];
         $newsItem->description   = $validated['description'];
         $newsItem->image         = $path;
         $newsItem->publish_date  = $validated['publish_date'];
         $newsItem->save();
-        
+
         return redirect()->route('admin.news.index')->with('success', 'Nieuwsitem succesvol aangemaakt!');
     }
 
     /**
      * Display the specified resource.
-     * 
      */
     public function show($id)
     {
         $newsItem = News::findOrFail($id);
-
-        
         return view('news.show', compact('newsItem'));
     }
 
@@ -74,8 +64,6 @@ class NewsController extends Controller
     public function edit($id)
     {
         $newsItem = News::findOrFail($id);
-
-        
         return view('admin.news.edit', compact('newsItem'));
     }
 
@@ -92,12 +80,10 @@ class NewsController extends Controller
         ]);
 
         $newsItem = News::findOrFail($id);
-
         $newsItem->title         = $validated['title'];
         $newsItem->description   = $validated['description'];
         $newsItem->publish_date  = $validated['publish_date'];
 
-       
         if ($request->hasFile('image')) {
             $path = $request->file('image')->store('uploads/news', 'public');
             $newsItem->image = $path;
@@ -106,7 +92,6 @@ class NewsController extends Controller
         $newsItem->save();
 
         return redirect()->route('admin.news.index')->with('success', 'Nieuwsitem succesvol bijgewerkt!');
-    
     }
 
     /**
@@ -116,9 +101,7 @@ class NewsController extends Controller
     {
         $newsItem = News::findOrFail($id);
         $newsItem->delete();
-
         return redirect()->route('admin.news.index')->with('success', 'Nieuwsitem succesvol verwijdert!');
-    
     }
 
     public function showPublicList()
@@ -131,5 +114,28 @@ class NewsController extends Controller
     {
         $newsItem = News::findOrFail($id); 
         return view('news.show', compact('newsItem'));
+    }
+
+    public function storeComment(Request $request, $id)
+    {
+        
+        $request->validate([
+            'content' => 'required|string|max:2000',
+        ]);
+
+        
+        $newsItem = News::findOrFail($id);
+
+        
+        NewsComment::create([
+            'news_id' => $newsItem->id,
+            'user_id' => auth()->id() ?? null,    
+            'content' => $request->input('content'),
+        ]);
+
+        
+        return redirect()
+            ->route('news.show', $id)
+            ->with('success', 'Reactie succesvol geplaatst!');
     }
 }
