@@ -1,3 +1,21 @@
+@if(session('success'))
+    <div 
+        style="
+            color: #0f5132;           
+            background-color: #d1e7dd; 
+            font-size: 1.5rem;        
+            font-weight: bold;       
+            padding: 1rem;            
+            border: 2px solid #badbcc; 
+            border-radius: 8px;
+            margin-bottom: 1rem;
+        "
+    >
+        {{ session('success') }}
+    </div>
+@endif
+<br>
+<br>
 
 <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
@@ -38,48 +56,76 @@
 
                
         
+<!-- Profielinformatie bewerken -->
+<div class="max-w-xl mx-auto bg-white shadow-md rounded-md p-6 mt-6">
+    <h2 class="text-2xl font-bold mb-4 text-gray-700">
+        {{ __('Profielinformatie bewerken') }}
+    </h2>
 
-    <!-- Profielinformatie bewerken -->
- <form action="{{ route('profile.update') }}" method="POST" class="mt-6 space-y-6">
-    @csrf
-    @method('PATCH')
+    <form action="{{ route('profile.update') }}" method="POST" class="space-y-6">
+        @csrf
+        @method('PATCH')
 
-    <!-- Gebruikersnaam -->
-    <div>
-        <label for="username">{{ __('Gebruikersnaam') }}</label>
-        <input id="username" name="username" type="text" 
-               value="{{ old('username', auth()->user()->username) }}" 
-               class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
-    </div>
+        <!-- Gebruikersnaam -->
+        <div>
+            <label for="username" class="block font-semibold text-gray-700 mb-1">
+                {{ __('Gebruikersnaam') }}
+            </label>
+            <input
+                id="username"
+                name="username"
+                type="text"
+                value="{{ old('username', auth()->user()->username) }}"
+                class="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none
+                       focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500
+                       transition-colors duration-200"
+            >
+        </div>
 
-    <!-- Geboortedatum -->
-    <div>
-        <label for="birthday">{{ __('Geboortedatum') }}</label>
-        <input id="birthday" name="birthday" type="date" 
-               value="{{ old('birthday', auth()->user()->birthday) }}" 
-               class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
-    </div>
+        <!-- Geboortedatum -->
+        <div>
+            <label for="birthday" class="block font-semibold text-gray-700 mb-1">
+                {{ __('Geboortedatum') }}
+            </label>
+            <input
+                id="birthday"
+                name="birthday"
+                type="date"
+                value="{{ old('birthday', auth()->user()->birthday) }}"
+                class="w-full border border-gray-300 rounded-md px-3 py-2
+                       focus:outline-none focus:ring-2 focus:ring-indigo-500
+                       focus:border-indigo-500 transition-colors duration-200"
+            >
+        </div>
 
-    <!-- Over mij -->
-    <div>
-        <label for="about_me">{{ __('Over mij') }}</label>
-        <textarea id="about_me" name="about_me" 
-                  class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
-            {{ old('about_me', auth()->user()->about_me) }}
-        </textarea>
-    </div>
+        <!-- Over mij -->
+        <div>
+            <label for="about_me" class="block font-semibold text-gray-700 mb-1">
+                {{ __('Over mij') }}
+            </label>
+            <textarea
+                id="about_me"
+                name="about_me"
+                rows="5"
+                class="w-full border border-gray-300 rounded-md px-3 py-2
+                       focus:outline-none focus:ring-2 focus:ring-indigo-500
+                       focus:border-indigo-500 transition-colors duration-200"
+            >{{ old('about_me', auth()->user()->about_me) }}</textarea>
+        </div>
 
-    <!-- Opslaan knop -->
-    <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-        {{ __('Opslaan') }}
-    </button>
-</form>
+        
+        <button type="submit" class="custom-button">
+            {{ __('Opslaan') }}
+        </button>
+    </form>
+</div>
+
 
 
 <style>
     .custom-button {
-        background-color: #007bff; /* Blauwe achtergrond */
-        color: #ffffff; /* Witte tekst */
+        background-color: #007bff; 
+        color: #ffffff; 
         padding: 10px 20px;
         border-radius: 5px;
         border: none;
@@ -88,7 +134,7 @@
     }
 
     .custom-button:hover {
-        background-color: #0056b3; /* Donkerder blauw bij hover */
+        background-color: #0056b3; 
     }
 </style>
 
