@@ -114,7 +114,7 @@
               </div>
               <div class="detail-box">
                 <h6>
-                  Fox-40 fluit
+                  Fox-40 whistles
                 </h6>
                 <h6>
                   Price
@@ -139,7 +139,7 @@
               </div>
               <div class="detail-box">
                 <h6>
-                  Kaarten
+                  Cards
                 </h6>
                 <h6>
                   Price
@@ -164,7 +164,7 @@
               </div>
               <div class="detail-box">
                 <h6>
-                  Vlaggen lijnrechter
+                  Flags
                 </h6>
                 <h6>
                   Price
@@ -208,7 +208,7 @@
         </div>
       </div>
       <div class="btn-box">
-        <a href="">
+        <a href="{{ route('shop') }}">
           View All Products
         </a>
       </div>

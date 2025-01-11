@@ -1,6 +1,6 @@
 <header class="header_section">
       <nav class="navbar navbar-expand-lg custom_nav-container ">
-        <a class="navbar-brand" href="index.html">
+        <a class="navbar-brand" href="{{ route('home') }}">
           <span>
             Referee Shop
           </span>
@@ -9,20 +9,16 @@
           <span class=""></span>
         </button>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav  ">
-            <li class="nav-item active">
-              <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
-            </li>
             <li class="nav-item">
-              <a class="nav-link" href="shop.html">
-                Shop
-              </a>
-              <li class="nav-item">
-                <a class="nav-link" href="about.html">
-                  About us
-                </a>
-              </li>
+              <a class="nav-link" href="{{ route('home') }}">Home</a>
+            </li>
+
+            <li>
+            <a class="nav-link" href="{{ route('shop') }}">Shop</a>
+            </li>
+
             <li class="nav-item">
             <a class="nav-link" href="{{ route('contact') }}">Contact Us</a>
             </li>
@@ -30,7 +26,6 @@
             <li class="nav-item">
             <a class="nav-link" href="{{ route('news.index') }}">News items</a> 
             </li>
-
 
             <li class="nav-item">
             <a class="nav-link" href="{{ route('profiles.index') }}">Profiles</a>
@@ -44,12 +39,13 @@
 
               @if (Auth::check())
             <li class="nav-item">
-            <a class="nav-link" href="{{ route('profile.edit') }}">Profiel bewerken</a>
+            <a class="nav-link" href="{{ route('profile.edit') }}">Edit profile</a>
             </li>
               @endif
           </ul>
+        
 
-          <div class="user_option">
+        <div class="user_option">
         
 
           @if (Route::has('login'))
@@ -61,13 +57,14 @@
           </a>
 
          
+        <form method="POST" action="{{ route('logout') }}" style="display: inline;">
+         @csrf
+        <button type="submit" class="btn nav_search-btn">
+        <i class="fa fa-sign-out" aria-hidden="true"></i>
+          Logout
+        </button>
+        </form>
 
-          <form style="padding: 10px" method="POST" action="{{ route('logout') }}">
-                            @csrf
-
-                           <input class="btn-danger" type="submit" value="logout">
-
-          </form>
 
           @else
 

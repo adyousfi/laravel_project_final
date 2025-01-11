@@ -15,6 +15,11 @@ Route::get('/', [HomeController::class, 'home'])->name('home');
 
 // Route voor de contactpagina
 Route::view('/contact', 'Home.contact')->name('contact');
+//route voor shopping pagina
+Route::get('/shop', function () {
+    return view('Home.shopping');
+})->name('shop');
+
 
 Route::get('/dashboard', [HomeController::class, 'home'])->middleware(['auth', 'verified'])->name('dashboard');
 
