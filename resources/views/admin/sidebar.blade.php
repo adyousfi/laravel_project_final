@@ -13,16 +13,21 @@
       <ul class="list-unstyled">
 
         <li class="{{ Request::is('admin/dashboard') ? 'active' : '' }}">
-        <a href="{{ url('admin/dashboard') }}"> <i class="icon-home"></i>Contact-us page panel </a>
+        <a href="{{ url('admin/dashboard') }}"> <i class="icon-grid"></i>Contact-us page panel </a>
         </li>
 
-        <li class="{{ Request::is('view_category') ? 'active' : '' }}">
-        <a href="{{url('view_category') }}"> <i class="icon-grid"></i>Manage users </a>
+        <li class="{{ Request::is('admin/manage_users') ? 'active' : '' }}">
+        <a href="{{url('admin/manage_users') }}"> <i class="icon-grid"></i>Manage users </a>
         </li>
 
         <li class="{{ Request::is('admin/news') ? 'active' : '' }}">
         <a href="{{ url('admin/news') }}">
         <i class="icon-grid"></i>News Items</a>
+        </li>
+
+        <li class="{{ Request::is('admin/faqs') ? 'active' : '' }}">
+        <a href="{{ route('admin.faqs.index') }}">
+        <i class="icon-grid"></i>Manage FAQ</a>
         </li>
 
                 

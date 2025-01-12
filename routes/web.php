@@ -33,7 +33,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
     // Admin dashboard route aangepast om contactberichten te tonen
     Route::get('admin/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
 
-    Route::get('/view_category', [AdminController::class, 'view_category'])->name('admin.view_category');
+    Route::get('admin/manage_users', [AdminController::class, 'manage_users'])->name('admin.manage_users');
 
     // Toggle admin rechten van een gebruiker
     Route::post('/admin/toggle/{user}', [AdminController::class, 'toggleAdmin']);

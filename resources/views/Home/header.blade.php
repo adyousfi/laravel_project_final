@@ -52,11 +52,10 @@
 
           @auth 
 
-          <a href="">
+          <a href="{{ route('shop') }}">
             <i class="fa fa-shopping-bag" aria-hidden="true"></i>
           </a>
 
-         
         <form method="POST" action="{{ route('logout') }}" style="display: inline;">
          @csrf
         <button type="submit" class="btn nav_search-btn">

@@ -8,10 +8,10 @@ use App\Models\ContactMessage;
 
 class AdminController extends Controller
 {
-    public function view_category()
+    public function manage_users()
     {
         $users = User::all();
-        return view('admin.category', compact('users'));
+        return view('admin.manage_users', compact('users'));
     }
 
     public function toggleAdmin($id)
@@ -30,7 +30,7 @@ class AdminController extends Controller
 
     public function createUser(Request $request)
     {
-        // Valideer de gegevens en sla het resultaat op in $validated
+        
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email',
@@ -47,7 +47,7 @@ class AdminController extends Controller
         $user->save();
 
         // Redirect naar een succespagina
-        return redirect()->route('admin.view_category')->with('success', 'Gebruiker succesvol aangemaakt!');
+        return redirect()->route('admin.manage_users')->with('success', 'Gebruiker succesvol aangemaakt!');
     }
 
     public function index()

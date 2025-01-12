@@ -13,9 +13,9 @@
       <div class="page-header">
         <div class="container-fluid">
 
-          @include('admin.body')
+    @include('admin.footer')
 
-          <!-- Contactberichten sectie -->
+           <!-- Contactberichten sectie -->
           <div class="contact-messages mt-4">
             <h2>Contact Messages</h2>
 

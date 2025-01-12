@@ -14,11 +14,7 @@ class HomeController extends Controller
     
     public function home()
     {
-        // Haal de FAQ-categorieën en vragen op
         $faqCategories = FaqCategory::with('faqs')->get();
-        
-
-        // Stuur de data naar de view
         return view('home.index', compact('faqCategories'));
     }
 }

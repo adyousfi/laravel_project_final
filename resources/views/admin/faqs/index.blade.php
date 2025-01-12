@@ -2,8 +2,12 @@
 
 @section('content')
 <div class="container">
-    <h1>FAQ Questions</h1>
-    <a href="{{ route('admin.faqs.create') }}" class="btn btn-primary">Create FAQ</a>
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h1>FAQ Questions</h1>
+        <a href="{{ route('faq_categories.index') }}" class="btn btn-secondary">Manage FAQ Categories</a>
+    </div>
+
+    <a href="{{ route('admin.faqs.create') }}" class="btn btn-primary mb-3">Create FAQ</a>
 
     <table class="table">
         <thead>
@@ -21,8 +25,7 @@
                     <td>{{ $faq->answer }}</td>
                     <td>{{ $faq->category->name }}</td>
                     <td>
-                    <a href="{{ route('admin.faqs.edit', $faq) }}" class="btn btn-sm btn-warning">Edit</a>
-
+                        <a href="{{ route('admin.faqs.edit', $faq) }}" class="btn btn-sm btn-warning">Edit</a>
                         <form action="{{ route('admin.faqs.destroy', $faq) }}" method="POST" class="d-inline">
                             @csrf
                             @method('DELETE')
@@ -35,3 +38,4 @@
     </table>
 </div>
 @endsection
+

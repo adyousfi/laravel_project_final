@@ -8,13 +8,12 @@
     </header>
     @include('admin.sidebar')
 
-<!-- Sidebar Navigation end-->
+
     <div class="page-content">
         <div class="page-header">
             <div class="container-fluid">
                 <h2>Gebruikersbeheer</h2>
 
-               <!-- Toon validatiefouten -->
 @if ($errors->any())
     <div class="alert alert-danger">
         <ul>

@@ -2,8 +2,13 @@
 
 @section('content')
 <div class="container">
-    <h1>FAQ Categories</h1>
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h1>FAQ Categories</h1>
+        <a href="{{ route('admin.faqs.index') }}" class="btn btn-secondary">Manage FAQs</a>
+    </div>
+
     <a href="{{ route('faq_categories.create') }}" class="btn btn-primary mb-3">Add Category</a>
+
     <table class="table">
         <thead>
             <tr>
