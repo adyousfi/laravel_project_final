@@ -9,7 +9,7 @@
             <p>Web Designer</p>
           </div>
         </div>
-        <!-- Sidebar Navidation Menus--><span class="heading">Main</span>
+      <span class="heading">Main</span>
       <ul class="list-unstyled">
 
         <li class="{{ Request::is('admin/dashboard') ? 'active' : '' }}">
