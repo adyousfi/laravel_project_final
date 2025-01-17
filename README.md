@@ -133,7 +133,7 @@ php artisan serve
  
 # Usage
 
-Log in as the default admin to explore admin functionalities such as managing products, news, FAQs, and contact forms:
+Log in as the default admin to explore admin functionalities such as managing users, news, FAQs, and contact forms:
 
 - **Email:** admin@ehb.be  
 - **Password:** Password!321  
