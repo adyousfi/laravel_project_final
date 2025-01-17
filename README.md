@@ -132,14 +132,20 @@ php artisan serve
 2.**Access the application at http://localhost:8000.**
  
 # Usage
- 
-Log in as the default admin using:
- 
-Email: **admin@ehb.be**
- 
-Password: **Password!321**
- 
-Explore the features, such as managing news, FAQs, and contact forms.
+
+Log in as the default admin to explore admin functionalities such as managing products, news, FAQs, and contact forms:
+
+- **Email:** admin@ehb.be  
+- **Password:** Password!321  
+
+To experience user functionalities, log in as the default user or create a new account:
+
+- **Default User Credentials:**  
+  - **Email:** testuser@example.com  
+  - **Password:** TestPassword123  
+
+As a logged-in user, you can explore various features such as viewing and commenting on news items, sending private messages to other users, and submitting a contact form. Additionally, users can update their profile, including uploading a profile photo, editing the "About Me" section, and adding their birthday. Users also have access to FAQs, which are categorized for quick and easy navigation.
+
  
 # License
  
