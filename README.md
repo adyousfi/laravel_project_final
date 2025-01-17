@@ -160,6 +160,7 @@ This project is open-source and licensed under the MIT License. See the LICENSE 
 - [Dark Admin Template Implementation in Laravel by @WebTechKnowledge](https://www.youtube.com/watch?v=34OveOMX6K0&list=PLm8sgxwSZofdmlPxaDB7fRLv_NVe2uFKl&index=4) – for demonstrating how to implement the Dark Admin Bootstrap 4 Template into a Laravel project.
 - [HTML Template and Tutorial by @WebTechKnowledge](https://www.youtube.com/watch?v=oiAlDjARrOU&list=PLm8sgxwSZofdmlPxaDB7fRLv_NVe2uFKl&index=3) – for the HTML template used on the homepage and guidance on integrating it into a Laravel project.
 
+-I would also like to express my gratitude to my instructor, Kevin Felix. His guidance and explanations during the lessons were essential in successfully completing this project.
 
 
 
