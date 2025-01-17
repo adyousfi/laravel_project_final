@@ -21,18 +21,18 @@
             <!-- Profielinformatie -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                    <h2 class="text-lg font-semibold text-gray-800 mb-2">Over mij</h2>
-                    <p class="text-gray-600">{{ $user->about_me ?? 'Geen informatie beschikbaar.' }}</p>
+                    <h2 class="text-lg font-semibold text-gray-800 mb-2">About me</h2>
+                    <p class="text-gray-600">{{ $user->about_me ?? 'No information available.' }}</p>
                 </div>
                 <div>
-                    <h2 class="text-lg font-semibold text-gray-800 mb-2">Geboortedatum</h2>
-                    <p class="text-gray-600">{{ $user->birthday ? \Carbon\Carbon::parse($user->birthday)->format('d-m-Y') : 'Niet opgegeven' }}</p>
+                    <h2 class="text-lg font-semibold text-gray-800 mb-2">Birthday</h2>
+                    <p class="text-gray-600">{{ $user->birthday ? \Carbon\Carbon::parse($user->birthday)->format('d-m-Y') : 'No information available' }}</p>
                 </div>
             </div>
 
             <!-- Comments sectie -->
             <hr class="my-6">
-            <h2 class="text-lg font-semibold text-gray-800 mb-4">Bestaande comments</h2>
+            <h2 class="text-lg font-semibold text-gray-800 mb-4">Existing comments</h2>
             <div class="bg-gray-50 p-4 rounded-lg shadow-inner">
                 @if ($user->profileComments->isNotEmpty())
                     <ul class="space-y-4">
@@ -45,30 +45,47 @@
                         @endforeach
                     </ul>
                 @else
-                    <p class="text-sm text-gray-500">Geen comments gevonden.</p>
+                    <p class="text-sm text-gray-500">No comments found.</p>
                 @endif
 
                 @auth
                     <form method="POST" action="{{ route('profiles.comments.store', $user) }}" class="mt-4">
                         @csrf
-                        <textarea name="body" rows="3" placeholder="Schrijf een comment..." class="w-full border rounded-lg p-2 focus:outline-none focus:ring focus:ring-indigo-200"></textarea>
-                        <button type="submit" class="mt-2 bg-blue-500 hover:bg-blue-700 text-blue py-1 px-4 rounded">Plaatsen</button>
+                        <textarea name="body" rows="3" placeholder="Write a comment..." class="w-full border rounded-lg p-2 focus:outline-none focus:ring focus:ring-indigo-200"></textarea>
+                        <button type="submit" class="custom-button">Post comment</button>
                     </form>
                 @else
-                    <p class="text-sm text-gray-500 mt-4"><a href="{{ route('login') }}" class="text-blue-500 hover:underline">Log in</a> om een comment te plaatsen.</p>
+                    <p class="text-sm text-gray-500 mt-4"><a href="{{ route('login') }}" class="text-blue-500 hover:underline">Log in</a> to leave a comment.</p>
                 @endauth
             </div>
 
             <!-- Prive bericht sturen -->
             @auth
                 <hr class="my-6">
-                <h2 class="text-lg font-semibold text-gray-800 mb-4">Stuur een bericht</h2>
+                <h2 class="text-lg font-semibold text-gray-800 mb-4">Send a private message</h2>
                 <form method="POST" action="{{ route('messages.store', $user) }}" class="bg-gray-50 p-4 rounded-lg shadow-inner">
                     @csrf
-                    <textarea name="body" rows="3" placeholder="Typ je bericht..." class="w-full border rounded-lg p-2 focus:outline-none focus:ring focus:ring-indigo-200"></textarea>
-                    <button type="submit" class="mt-2 bg-blue-500 hover:bg-blue-700 text-blue py-1 px-4 rounded">Verstuur</button>
+                    <textarea name="body" rows="3" placeholder="Write your message..." class="w-full border rounded-lg p-2 focus:outline-none focus:ring focus:ring-indigo-200"></textarea>
+                    <button type="submit" class="custom-button">Verstuur</button>
                 </form>
             @endauth
         </div>
     </div>
 @endsection
+
+
+<style>
+    .custom-button {
+        background-color: #007bff; 
+        color: #ffffff; 
+        padding: 10px 20px;
+        border-radius: 5px;
+        border: none;
+        font-weight: bold;
+        cursor: pointer;
+    }
+
+    .custom-button:hover {
+        background-color: #0056b3; 
+    }
+</style>

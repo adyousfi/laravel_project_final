@@ -32,5 +32,20 @@
             @endforeach
         </tbody>
     </table>
+
+    <div class="text-center mt-4">
+        <a href="{{ route('admin.dashboard') }}" class="btn btn-secondary" style="
+            padding: 10px 20px; 
+            font-size: 16px; 
+            border-radius: 8px; 
+            background-color: #6c757d; 
+            color: #fff; 
+            text-decoration: none;
+            transition: all 0.3s ease;
+        ">
+            Return to Admin Dashboard
+        </a>
+    </div>
+
 </div>
 @endsection

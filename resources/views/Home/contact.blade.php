@@ -1,4 +1,19 @@
-<section class="contact_section" style="background-color: #f0f8ff; padding: 40px 0;">
+<section class="contact_section" style="background-color: #f0f8ff; padding: 40px 0; position: relative;">
+    
+    <div style="position: absolute; top: 20px; right: 20px;">
+        <a href="{{ url('/') }}" class="btn btn-secondary" style="
+            padding: 10px 20px; 
+            font-size: 16px; 
+            border-radius: 8px; 
+            background-color: #6c757d; 
+            color: #fff; 
+            text-decoration: none;
+            transition: all 0.3s ease;
+        ">
+            Return to Home Page
+        </a>
+    </div>
+
     <div class="container px-0">
         <div class="heading_container text-center mb-5">
             <h2 style="font-size: 36px; font-weight: bold; color: #333;">Contact Us</h2>
@@ -79,10 +94,9 @@
 <br><br><br>
 
 <style>
-    /* Hover-effect voor de knop */
-    .send-message-btn:hover {
-        cursor: pointer; /* Verander de cursor in een pointer */
-        transform: scale(1.1); /* Vergroot de knop met 10% */
-        background-color: #0056b3; /* Donkerder blauw bij hover */
+    /* Hover-effect voor de knoppen */
+    .send-message-btn:hover, .btn-secondary:hover {
+        cursor: pointer;
+        transform: scale(1.1);
     }
 </style>

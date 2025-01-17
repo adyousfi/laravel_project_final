@@ -14,7 +14,7 @@
     <div class="container">
       <div class="heading_container heading_center">
         <h2>
-           Products
+           All Products
         </h2>
       </div>
       <div class="row">
@@ -28,7 +28,6 @@
                 <h6>Black Shirt</h6>
                 <h6>Price <span>45€</span></h6>
               </div>
-              <div class="new"><span>New</span></div>
             </a>
           </div>
         </div>
@@ -42,7 +41,6 @@
                 <h6>Yellow Shirt</h6>
                 <h6>Price <span>45€</span></h6>
               </div>
-              <div class="new"><span>New</span></div>
             </a>
           </div>
         </div>
@@ -56,7 +54,6 @@
                 <h6>Pink Shirt</h6>
                 <h6>Price <span>49€</span></h6>
               </div>
-              <div class="new"><span>New</span></div>
             </a>
           </div>
         </div>
@@ -70,7 +67,6 @@
                 <h6>Orange Shirt</h6>
                 <h6>Price <span>45€</span></h6>
               </div>
-              <div class="new"><span>New</span></div>
             </a>
           </div>
         </div>
@@ -84,7 +80,6 @@
                 <h6>Fox-40 whistles</h6>
                 <h6>Price <span>15€</span></h6>
               </div>
-              <div class="new"><span>New</span></div>
             </a>
           </div>
         </div>
@@ -98,7 +93,6 @@
                 <h6>Cards</h6>
                 <h6>Price <span>10€</span></h6>
               </div>
-              <div class="new"><span>New</span></div>
             </a>
           </div>
         </div>
@@ -112,7 +106,6 @@
                 <h6>Flags</h6>
                 <h6>Price <span>19€</span></h6>
               </div>
-              <div class="new"><span>New</span></div>
             </a>
           </div>
         </div>
@@ -126,7 +119,6 @@
                 <h6>Spray</h6>
                 <h6>Price <span>39€</span></h6>
               </div>
-              <div class="new"><span>New</span></div>
             </a>
           </div>
         </div>

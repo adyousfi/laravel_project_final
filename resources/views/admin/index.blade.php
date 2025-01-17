@@ -7,7 +7,7 @@
     @include('admin.header')
 
     @include('admin.sidebar')
-    <!-- Sidebar Navigation end-->
+    
 
     <div class="page-content">
       <div class="page-header">
@@ -26,11 +26,11 @@
             <table class="table">
               <thead>
                 <tr>
-                  <th>Naam</th>
+                  <th>name</th>
                   <th>E-mail</th>
-                  <th>Bericht</th>
-                  <th>Beantwoord</th>
-                  <th>Acties</th>
+                  <th>Message</th>
+                  <th>Answered</th>
+                  <th>Actions</th>
                 </tr>
               </thead>
               <tbody>
@@ -39,16 +39,16 @@
                     <td>{{ $message->name }}</td>
                     <td>{{ $message->email }}</td>
                     <td>{{ $message->message }}</td>
-                    <td>{{ $message->answered ? 'Ja' : 'Nee' }}</td>
+                    <td>{{ $message->answered ? 'Yes' : 'No' }}</td>
                     <td>
                       @if(!$message->answered)
                         <form action="{{ route('admin.contact_messages.reply', $message) }}" method="POST">
                           @csrf
-                          <textarea name="reply" class="form-control" placeholder="Zet je antwoord hier" required></textarea>
-                          <button type="submit" class="btn btn-primary mt-2">Verzend Antwoord</button>
+                          <textarea name="reply" class="form-control" placeholder="Write your answer..." required></textarea>
+                          <button type="submit" class="btn btn-primary mt-2">Send answer</button>
                         </form>
                       @else
-                        <span class="text-success">Succesvol beantwoord</span>
+                        <span class="text-success">Successfully answered</span>
                       @endif
                     </td>
                   </tr>

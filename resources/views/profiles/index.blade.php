@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container py-5">
-        <h1 class="mb-4">Alle Profielen</h1>
+        <h1 class="mb-4">All profiles</h1>
 
         <div class="row">
             @foreach ($users as $user)
@@ -20,7 +20,7 @@
                             <p class="card-text text-muted">{{ $user->email }}</p>
                         </div>
                         <div class="card-footer">
-                            <a href="{{ route('profiles.show', $user) }}" class="btn btn-primary btn-sm">Bekijk Profiel</a>
+                            <a href="{{ route('profiles.show', $user) }}" class="btn btn-primary btn-sm">Show profile</a>
                         </div>
                     </div>
                 </div>

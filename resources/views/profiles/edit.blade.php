@@ -30,7 +30,7 @@
             <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
                 <div class="max-w-xl">
                     <header>
-                        <h2 class="text-lg font-medium text-gray-900">{{ __('Profielfoto bijwerken') }}</h2>
+                        <h2 class="text-lg font-medium text-gray-900">{{ __('Edit profile picture') }}</h2>
                     </header>
 
    
@@ -38,19 +38,19 @@
 <form method="POST" action="{{ route('profile.updateProfilePicture') }}" enctype="multipart/form-data" class="mt-6 space-y-6">
     @csrf
     <div>
-        <label for="profile_picture" class="block text-sm font-medium text-gray-700">{{ __('Profielfoto') }}</label>
+        <label for="profile_picture" class="block text-sm font-medium text-gray-700">{{ __('Profiel picture') }}</label>
         <input id="profile_picture" type="file" name="profile_picture" accept="image/*" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
     </div>
 
     @if (auth()->user()->profile_picture)
         <div class="mt-4">
-            <p class="text-sm text-gray-600">{{ __('Huidige profielfoto:') }}</p>
+            <p class="text-sm text-gray-600">{{ __('Current profile picture:') }}</p>
             <img src="{{ asset('storage/' . auth()->user()->profile_picture) }}" alt="Profielfoto" class="rounded-full w-20 h-20 object-cover">
         </div>
     @endif
 
     <button type="submit" class="custom-button">
-        {{ __('Bijwerken') }}
+        {{ __('Update') }}
     </button>
 </form>
 
@@ -59,7 +59,7 @@
 <!-- Profielinformatie bewerken -->
 <div class="max-w-xl mx-auto bg-white shadow-md rounded-md p-6 mt-6">
     <h2 class="text-2xl font-bold mb-4 text-gray-700">
-        {{ __('Profielinformatie bewerken') }}
+        {{ __('Update profile information') }}
     </h2>
 
     <form action="{{ route('profile.update') }}" method="POST" class="space-y-6">
@@ -69,7 +69,7 @@
         <!-- Gebruikersnaam -->
         <div>
             <label for="username" class="block font-semibold text-gray-700 mb-1">
-                {{ __('Gebruikersnaam') }}
+                {{ __('Username') }}
             </label>
             <input
                 id="username"
@@ -81,11 +81,12 @@
                        transition-colors duration-200"
             >
         </div>
+<br>
 
         <!-- Geboortedatum -->
         <div>
             <label for="birthday" class="block font-semibold text-gray-700 mb-1">
-                {{ __('Geboortedatum') }}
+                {{ __('Birthday') }}
             </label>
             <input
                 id="birthday"
@@ -97,11 +98,12 @@
                        focus:border-indigo-500 transition-colors duration-200"
             >
         </div>
+<br>
 
         <!-- Over mij -->
         <div>
             <label for="about_me" class="block font-semibold text-gray-700 mb-1">
-                {{ __('Over mij') }}
+                {{ __('About me') }}
             </label>
             <textarea
                 id="about_me"
@@ -112,14 +114,28 @@
                        focus:border-indigo-500 transition-colors duration-200"
             >{{ old('about_me', auth()->user()->about_me) }}</textarea>
         </div>
+<br>
 
         
         <button type="submit" class="custom-button">
-            {{ __('Opslaan') }}
+            {{ __('Update') }}
         </button>
     </form>
 </div>
 
+<div style="position: absolute; top: 20px; right: 20px;">
+        <a href="{{ url('/') }}" class="btn btn-secondary" style="
+            padding: 10px 20px; 
+            font-size: 16px; 
+            border-radius: 8px; 
+            background-color: #6c757d; 
+            color: #fff; 
+            text-decoration: none;
+            transition: all 0.3s ease;
+        ">
+            Return to Home Page
+        </a>
+    </div>
 
 
 <style>

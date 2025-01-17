@@ -12,7 +12,7 @@
     <div class="page-content">
         <div class="page-header">
             <div class="container-fluid">
-                <h2>Gebruikersbeheer</h2>
+                <h2>Manage users</h2>
 
 @if ($errors->any())
     <div class="alert alert-danger">
@@ -29,7 +29,7 @@
                 <form action="{{ route('admin.createUser') }}" method="POST" class="mb-3">
                         @csrf
                         <div class="mb-3">
-                            <label for="name">Naam</label>
+                            <label for="name">Name</label>
                             <input type="text" id="name" name="name" class="form-control" required>
                         </div>
                         <div class="mb-3">
@@ -37,31 +37,31 @@
                             <input type="email" id="email" name="email" class="form-control" required>
                         </div>
                         <div class="mb-3">
-                            <label for="password">Wachtwoord</label>
+                            <label for="password">Password</label>
                             <input type="password" id="password" name="password" class="form-control" required>
                         </div>
                         <div class="mb-3">
-                            <label for="password_confirmation">Bevestig Wachtwoord</label>
+                            <label for="password_confirmation">Confirm password</label>
                             <input type="password" id="password_confirmation" name="password_confirmation" class="form-control" required>
                         </div>
                         <div class="mb-3">
-                            <label for="usertype">Rol</label>
+                            <label for="usertype">Role</label>
                             <select id="usertype" name="usertype" class="form-control" required>
-                                <option value="user">Gebruiker</option>
+                                <option value="user">User</option>
                                 <option value="admin">Admin</option>
                             </select>
                         </div>
-                        <button type="submit" class="btn btn-primary">Maak Gebruiker</button>
+                        <button type="submit" class="btn btn-primary">Make User/Admin</button>
                     </form>
                 
 
                 <table class="table table-striped">
                     <thead>
                         <tr>
-                            <th>Naam</th>
+                            <th>Name</th>
                             <th>Email</th>
-                            <th>Rol</th>
-                            <th>Acties</th>
+                            <th>Role</th>
+                            <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -75,7 +75,7 @@
                                         @csrf
                                         @method('POST')
                                         <button type="submit" class="btn btn-warning">
-                                            {{ $user->usertype == 'admin' ? 'Maak een gebruiker' : 'Maak admin' }}
+                                            {{ $user->usertype == 'admin' ? 'Make a user' : 'Make admin' }}
                                         </button>
                                     </form>
                                 </td>
