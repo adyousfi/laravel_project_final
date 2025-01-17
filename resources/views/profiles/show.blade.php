@@ -66,7 +66,7 @@
                 <form method="POST" action="{{ route('messages.store', $user) }}" class="bg-gray-50 p-4 rounded-lg shadow-inner">
                     @csrf
                     <textarea name="body" rows="3" placeholder="Write your message..." class="w-full border rounded-lg p-2 focus:outline-none focus:ring focus:ring-indigo-200"></textarea>
-                    <button type="submit" class="custom-button">Verstuur</button>
+                    <button type="submit" class="custom-button">send</button>
                 </form>
             @endauth
         </div>

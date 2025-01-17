@@ -144,7 +144,7 @@ To experience user functionalities, log in as the default user or create a new a
   - **Email:** testuser@example.com  
   - **Password:** TestPassword123  
 
-As a logged-in user, you can explore various features such as viewing and commenting on news items, sending private messages to other users, and submitting a contact form. Additionally, users can update their profile, including uploading a profile photo, editing the "About Me" section, and adding their birthday. Users also have access to FAQs, which are categorized for quick and easy navigation.
+As a logged-in user, you can explore various features such as viewing and commenting on news items, sending private messages to other users, and submitting a contact form. Additionally, users can update their profile, including uploading a profile photo, editing the "About Me" section, and adding their birthday. Users also have access to FAQs, which are categorized for quick and easy navigation. When you connect for the first time with this default user, you have to add your profile picture and personal information in the edit profile section.
 
  
 # License
